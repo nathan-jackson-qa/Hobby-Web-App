@@ -50,7 +50,9 @@ public class GameController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public boolean deleteGame(@PathVariable("id") Long id) {
-		return this.service.deleteGame(id);
+	public ResponseEntity<GameDTO> deleteGame(@PathVariable("id") Long id) {
+		return service.deleteGame(id) ?
+				new ResponseEntity<>(HttpStatus.NO_CONTENT) :
+					new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }

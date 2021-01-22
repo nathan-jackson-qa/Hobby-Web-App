@@ -1,7 +1,8 @@
 package com.qa.services;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -34,11 +35,7 @@ public class GameService {
 	public List<GameDTO> readAll() {
 		List<Game> games = repo.findAll();
 		
-		List<GameDTO> gamesDTO = new ArrayList<GameDTO>();
-		for(int i = 0; i < games.size(); i++ ) {
-			repo.save(games.get(i));
-			gamesDTO.add(mapToDTO(games.get(i)));
-		}
+		List<GameDTO> gamesDTO = games.stream().map(this::mapToDTO).collect(Collectors.toList());
 		return gamesDTO;
 	}
 	
@@ -48,7 +45,9 @@ public class GameService {
 	}
 	
 	public GameDTO updateGame(Long id, Game updatedGame) {
-		Game game = this.repo.findById(id).orElseThrow(EntityNotFoundException::new);
+		Optional<Game> existingOptional = this.repo.findById(id);
+        Game game = existingOptional.get();
+        
 		game.setTitle(updatedGame.getTitle());
 		game.setPlatform(updatedGame.getPlatform());
 		game.setDeveloperID(updatedGame.getDeveloperID());
