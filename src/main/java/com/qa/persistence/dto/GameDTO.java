@@ -12,4 +12,5 @@ public class GameDTO {
 	private int id;
 	private int developerID;
 	private String genre;
+	private String platform;
 }

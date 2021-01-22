@@ -21,8 +21,14 @@ public class Game {
 	private int id;
 	
 	@Column(nullable = false)
+	private String title;
+	
+	@Column(nullable = false)
 	private int developerID;
 	
 	@Column(nullable = false)
 	private String genre;
+	
+	@Column(nullable = false)
+	private String platform;
 }
