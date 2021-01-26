@@ -18,11 +18,17 @@ public class Game {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	@Column(nullable = false)
 	private int developerID;
-	
+
 	@Column(nullable = false)
 	private String genre;
+	
+	@Column(nullable = false)
+	private String platform;
+	
+	@Column(nullable = false)
+	private String title;
 }
