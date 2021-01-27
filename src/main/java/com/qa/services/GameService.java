@@ -50,7 +50,7 @@ public class GameService {
         Game game = existingOptional.get();
 		game.setTitle(updatedGame.getTitle());
 		game.setDeveloper(updatedGame.getDeveloper());
-		game.setPlatform(updatedGame.getPlatform());
+		game.setPlatforms(updatedGame.getPlatforms());
 		game.setGenre(updatedGame.getGenre());
 		
 		return mapToDTO(repo.save(game));
