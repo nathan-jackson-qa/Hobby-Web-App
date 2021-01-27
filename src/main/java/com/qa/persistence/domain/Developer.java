@@ -1,13 +1,16 @@
 package com.qa.persistence.domain;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,22 +20,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Game {
+public class Developer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@ManyToOne
-	@JsonBackReference
-	private Developer developer;
-
+		
 	@Column(nullable = false)
-	private String genre;
+	private String name;
 	
-	@Column(nullable = false)
-	private String platform;
 	
-	@Column(nullable = false)
-	private String title;
+	@OneToMany(targetEntity =Game.class, mappedBy = "developer", cascade= CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonManagedReference
+	private List<Game> games;
+	
+	
 }

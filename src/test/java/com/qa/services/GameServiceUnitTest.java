@@ -15,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.qa.HobbyAppApplication;
+import com.qa.persistence.domain.Developer;
 import com.qa.persistence.domain.Game;
 import com.qa.persistence.dto.GameDTO;
 import com.qa.persistence.repos.GameRepo;
@@ -44,7 +45,7 @@ public class GameServiceUnitTest {
 	
 	@Test
 	public void createTest() {
-		Game TEST_GAME = new Game(3L, 1, "Strategy", "PC", "Starcraft");
+		Game TEST_GAME = new Game(3L, new Developer (1L, "Activision", new ArrayList<Game>()), "Strategy", "PC", "Starcraft");
 		Mockito.when(this.repo.save(Mockito.any(Game.class))).thenReturn(TEST_GAME);
 		
 		GameDTO result = this.service.createGame(TEST_GAME);
@@ -56,7 +57,7 @@ public class GameServiceUnitTest {
 	
 	@Test
 	public void readByIDTest() {
-		Game TEST_GAME = new Game(1L, 1, "Strategy", "PC", "Starcraft");
+		Game TEST_GAME = new Game(1L, new Developer (1L, "Activision", new ArrayList<Game>()), "Strategy", "PC", "Starcraft");
 		Optional<Game> OptionalGame = Optional.of(TEST_GAME);
 		Mockito.when(this.repo.findById(1L)).thenReturn(OptionalGame);
 		
@@ -70,12 +71,12 @@ public class GameServiceUnitTest {
 	@Test
 	public void readAll() {
 		List<Game> games = new ArrayList<>();
-		games.add(new Game(1L, 1, "Shooter", "PC", "CoD"));
-		games.add(new Game(2L, 2, "Puzzle", "Switch", "Swapper"));
+		games.add(new Game(1L, new Developer (1L, "Activision", new ArrayList<Game>()), "Shooter", "PC", "CoD"));
+		games.add(new Game(2L, new Developer (2L, "Valve", new ArrayList<Game>()), "Puzzle", "Switch", "Swapper"));
 		
 		List<GameDTO> gamesDTO = new ArrayList<>();
-		gamesDTO.add(new GameDTO(1L, 1, "Shooter", "PC", "CoD"));
-		gamesDTO.add(new GameDTO(2L, 2, "Puzzle", "Switch", "Swapper"));
+		gamesDTO.add(new GameDTO(1L, "Shooter", "PC", "CoD"));
+		gamesDTO.add(new GameDTO(2L, "Puzzle", "Switch", "Swapper"));
 		
 		Mockito.when(this.repo.findAll()).thenReturn(games);
 		
@@ -88,11 +89,11 @@ public class GameServiceUnitTest {
 	
 	@Test
 	public void update() {
-		Game TEST_GAME = new Game(1L, 1, "Strategy", "PC", "Starcraft");
+		Game TEST_GAME = new Game(1L, new Developer (2L, "Valve", new ArrayList<Game>()), "Strategy", "PC", "Starcraft");
 		Optional<Game> OptionalGame = Optional.of(TEST_GAME);
 				
-		Game TEST_UPDATED = new Game(1L, 2, "Simulation", "Xbox", "Sims");
-		GameDTO TEST_UPDATED_DTO = new GameDTO(1L, 2, "Simulation", "Xbox", "Sims");
+		Game TEST_UPDATED = new Game(1L, new Developer (1L, "Activision", new ArrayList<Game>()), "Simulation", "Xbox", "Sims");
+		GameDTO TEST_UPDATED_DTO = new GameDTO(1L, "Simulation", "Xbox", "Sims");
 		
 		Mockito.when(this.repo.findById(1L)).thenReturn(OptionalGame);
 		Mockito.when(this.repo.save(TEST_UPDATED)).thenReturn(TEST_UPDATED);
@@ -114,7 +115,4 @@ public class GameServiceUnitTest {
 		Mockito.verify(this.repo, Mockito.times(1)).deleteById(1L);
 		Mockito.verify(this.repo, Mockito.times(1)).existsById(1L);
 	}
-	
-	
-
 }

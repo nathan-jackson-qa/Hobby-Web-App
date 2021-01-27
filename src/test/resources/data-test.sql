@@ -1,3 +1,7 @@
-INSERT INTO GAME(DEVELOPERID, GENRE, PLATFORM, TITLE) 
-VALUES(1, 'Shooter', 'PC', 'CoD'),
-(2, 'Puzzle', 'Switch', 'Swapper');
+INSERT INTO DEVELOPER(NAME)
+VALUES('Activision'),
+('Blizzard');
+
+INSERT INTO GAME(GENRE, PLATFORM, TITLE, DEVELOPER_ID) 
+VALUES('Shooter', 'PC', 'CoD', 1),
+('Puzzle', 'Switch', 'Swapper', 2);
