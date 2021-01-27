@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-light bg-info">
+        <a href="/" class="navbar-brand lead">QA</a>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapseExample">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a href="index.html" class="nav-link">Create</a></li>
+                <li class="nav-item"><a href="update.html" class="nav-link">Update</a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <fieldset>
+            <legend>Game Details:</legend>
+            <form method="GET" action="">
+                <div class="row border-bottom border-3 pb-3 mb-3">
+                    <div class="col-md">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="title" name="title" required
+                                placeholder="Game Title" />
+                            <label for="title">Enter the Game Title</label>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <label for="genre">Genre:</label>
+                        <select class="form-select" id="gender" name="gender">
+                            <option selected>Genre:</option>
+                            <option>First Person Shooter</option>
+                            <option>Third Person Shooter</option>
+                            <option>Puzzle</option>
+                            <option>2D Platformer</option>
+                            <option>3D Platformer</option>
+                            <option>Racing</option>
+                            <option>Real Time Strategy</option>
+                        </select>
+                    </div>
+                    <div class="col-md">
+                        <label for="developer">Developer:</label>
+                        <select class="form-select" id="gender" name="gender">
+                            <option selected>Developer</option>
+                            <option>First Person Shooter</option>
+                            <option>Third Person Shooter</option>
+                            <option>Puzzle</option>
+                            <option>2D Platformer</option>
+                            <option>3D Platformer</option>
+                            <option>Racing</option>
+                            <option>Real Time Strategy</option>
+                        </select>
+                    </div>
+                </div>
+        </fieldset>
+        <!-- <input type="button" value="submit" /> -->
+        <button type="submit"> OK </button>
+        <button type="reset">Reset</button>
+        <!-- <button type="button">Click me</button> -->
+        </form>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"></script>
+</html>
