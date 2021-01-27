@@ -23,10 +23,10 @@
         </div>
     </nav>
 <div class="container">
-    <fieldset>
+    <!-- <fieldset> -->
         <legend>Create Game</legend>
-        <form method="GET" action="">
-            <div class="row border-bottom border-3 pb-3 mb-3">
+        <!-- <form method="POST" action=""> -->
+            <div class="row pb-3 mb-3">
                 <div class="col-md">
                     <div class="form-floating">
                         <input type="text" class="form-control" id="title" name="title" required
@@ -36,8 +36,8 @@
                 </div>
                 <div class="col-md">
                     <label for="genre">Genre:</label>
-                    <select class="form-select" id="gender" name="gender">
-                        <option selected>Genre:</option>
+                    <select class="form-select" id="genre" name="genre">
+                        <option selected disabled=true>Genre:</option>
                         <option>First Person Shooter</option>
                         <option>Third Person Shooter</option>
                         <option>Puzzle</option>
@@ -48,16 +48,34 @@
                     </select>
                 </div>
                 <div class="col-md">
-                    <label for="developer">Developer:</label>
-                    <select class="form-select" id="developer" name="developer">
+                    <div class="form-floating">
+                        <input type="number" step="1" min="1" class="form-control" id="dev" name="dev" required
+                            placeholder="Developer" />
+                        <label for="dev">Enter the Developer ID</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row border-bottom border-3 pb-3 mb-3">
+                <div class="col-md">
+                    <label for="genre">Platform:</label>
+                    <select class="form-select" id="platform" name="platform">
+                        <option selected disabled=true>Platform:</option>
+                        <option>PC</option>
+                        <option>Nintendo Switch</option>
+                        <option>Xbox Series X</option>
+                        <option>PS5</option>
                     </select>
                 </div>
             </div>
-    </fieldset>
+            <div class="row" id = "feedback">
+
+            </div> 
+            
+    <!-- </fieldset> -->
 
 
     <!-- <input type="button" value="submit" /> -->
-    <button type="submit"> OK </button>
+    <button type="button" id="submit"s> OK </button>
     <button type="reset">Reset</button>
     <!-- <button type="button">Click me</button> -->
     </form>
@@ -67,4 +85,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
     crossorigin="anonymous"></script>
+<script src="index.js"></script>
 </body>
