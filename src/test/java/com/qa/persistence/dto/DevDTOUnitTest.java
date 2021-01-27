@@ -1,4 +1,4 @@
-package com.qa.persistence.domain;
+package com.qa.persistence.dto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -13,22 +13,23 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.qa.HobbyAppApplication;
 
 @SpringBootTest(classes = HobbyAppApplication.class)
-public class DeveloperUnitTest {
+public class DevDTOUnitTest {
+
 
 	@Test
 	public void testNoArgsConstructor () {
-		Developer empty = new Developer();
+		DeveloperDTO empty = new DeveloperDTO();
 		assertEquals(empty.getId(), null);
 	}
 	
 	@Test
 	public void testGettersSetters() {
-		Developer TEST_DEV = new Developer(1L, "Activision", new ArrayList<Game>());
+		DeveloperDTO TEST_DEV = new DeveloperDTO(1L, "Activision", new ArrayList<GameDTO>());
 		
 		Long newID = 2L;
 		String newName = "Blizzard";
-		List<Game> newGames = new ArrayList<Game>();
-		newGames.add(new Game());
+		List<GameDTO> newGames = new ArrayList<GameDTO>();
+		newGames.add(new GameDTO());
 		
 		TEST_DEV.setId(newID);
 		TEST_DEV.setName(newName);
@@ -41,8 +42,8 @@ public class DeveloperUnitTest {
 	
 	@Test
 	public void TestToString() {
-		Developer TEST_DEV = new Developer(1L, "Activision", new ArrayList<Game>());
-		String output = "Developer(id=1, name=Activision, games=[])";
+		DeveloperDTO TEST_DEV = new DeveloperDTO(1L, "Activision", new ArrayList<GameDTO>());
+		String output = "DeveloperDTO(id=1, name=Activision, games=[])";
 		String result = TEST_DEV.toString();
 		
 		assertEquals(result, output);
@@ -50,16 +51,16 @@ public class DeveloperUnitTest {
 	
 	@Test
 	public void testEquals() {
-		Developer TEST_DEV = new Developer(1L, "Activision", new ArrayList<Game>());
-		Developer TEST_DEV2 = new Developer(1L, "Activision", new ArrayList<Game>());
+		DeveloperDTO TEST_DEV = new DeveloperDTO(1L, "Activision", new ArrayList<GameDTO>());
+		DeveloperDTO TEST_DEV2 = new DeveloperDTO(1L, "Activision", new ArrayList<GameDTO>());
 		
 		assertTrue(TEST_DEV.equals(TEST_DEV2));
 	}
 	
 	@Test 
 	public void testNotEquals() {
-		Developer TEST_DEV = new Developer(1L, "Activision", new ArrayList<Game>());
-		Developer TEST_DEV2 = new Developer(2L, "Blizzard", new ArrayList<Game>());
+		DeveloperDTO TEST_DEV = new DeveloperDTO(1L, "Activision", new ArrayList<GameDTO>());
+		DeveloperDTO TEST_DEV2 = new DeveloperDTO(2L, "Blizzard", new ArrayList<GameDTO>());
 		
 		assertFalse(TEST_DEV.equals(TEST_DEV2));
 	}

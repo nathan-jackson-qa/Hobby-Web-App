@@ -23,7 +23,7 @@ public class Game {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne(optional = false)
+	@ManyToOne
 	@JsonBackReference
 	private Developer developer;
 

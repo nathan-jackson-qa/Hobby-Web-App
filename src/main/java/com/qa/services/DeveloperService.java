@@ -47,6 +47,7 @@ public class DeveloperService {
 	public DeveloperDTO updateDev(Long id, Developer updatedDev) {
 		Developer dev = this.repo.findById(id).orElseThrow(EntityNotFoundException::new);
 		dev.setName(updatedDev.getName());
+		dev.setGames(updatedDev.getGames());
 		return mapToDTO(repo.save(dev));
 	}
 	

@@ -2,8 +2,6 @@ package com.qa.rest;
 
 import java.util.List;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,8 +45,8 @@ public class DeveloperController {
 		return ResponseEntity.ok(this.service.readAll());
 	}
 	
-	@PutMapping("/update")
-	public ResponseEntity<DeveloperDTO> updateDeveloper(@PathParam("id") Long id, @RequestBody Developer dev) {
+	@PutMapping("/update/{id}")
+	public ResponseEntity<DeveloperDTO> updateDeveloper(@PathVariable("id") Long id, @RequestBody Developer dev) {
 		return new ResponseEntity<>(service.updateDev(id, dev), HttpStatus.ACCEPTED);
 	}
 	

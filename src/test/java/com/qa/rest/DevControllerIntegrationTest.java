@@ -23,13 +23,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.HobbyAppApplication;
 import com.qa.persistence.domain.Developer;
 import com.qa.persistence.domain.Game;
+import com.qa.persistence.dto.DeveloperDTO;
 import com.qa.persistence.dto.GameDTO;
 
 @SpringBootTest(classes = HobbyAppApplication.class)
 @Sql(scripts = {"classpath:schema-test.sql", "classpath:data-test.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 @AutoConfigureMockMvc
 @ActiveProfiles(profiles = "dev")
-public class GameControllerIntegrationTest {
+public class DevControllerIntegrationTest {
 
 	@Autowired
 	private MockMvc mock;
@@ -40,43 +41,40 @@ public class GameControllerIntegrationTest {
 	
 	private final int testID = 1;
 	
-	private GameDTO mapToDTO(Game game) {
-		return this.mapper.map(game, GameDTO.class);
+	private DeveloperDTO mapToDTO(Developer dev) {
+		return this.mapper.map(dev, DeveloperDTO.class);
 	}
 	
-	// ====================================
-	// TESTS
-	// ====================================
-	
-	// CREATE
 	@Test
 	public void createGame() throws Exception{
-		Game TEST_GAME = new Game(3L, new Developer (1L, "Activision", new ArrayList<Game>()), "Strategy", "PC", "Starcraft");
+		Developer TEST_DEV = new Developer (3L, "Valve", new ArrayList<Game>());
 		
 		MockHttpServletRequestBuilder mockRequest =
-				MockMvcRequestBuilders.request(HttpMethod.POST, "/game/create/")
+				MockMvcRequestBuilders.request(HttpMethod.POST, "/developer/create/")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(this.jsonifier.writeValueAsString(TEST_GAME))
+				.content(this.jsonifier.writeValueAsString(TEST_DEV))
 				.accept(MediaType.APPLICATION_JSON);
 		
-		ResultMatcher matchContent = MockMvcResultMatchers.content().json(this.jsonifier.writeValueAsString(mapToDTO(TEST_GAME)));
+		ResultMatcher matchContent = MockMvcResultMatchers.content().json(this.jsonifier.writeValueAsString(mapToDTO(TEST_DEV)));
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isCreated();
 		
 		this.mock.perform(mockRequest)
 		.andExpect(matchStatus)
 		.andExpect(matchContent);
 	}
-	// READ
+	
 	@Test
 	public void readOne() throws Exception{
-		GameDTO TEST_GAME = new GameDTO(1L, "Shooter", "PC", "CoD");
+		List<GameDTO> games =  new ArrayList<GameDTO>();
+		games.add(new GameDTO(1L, "Shooter", "PC", "CoD"));
+		DeveloperDTO TEST_DEV = new DeveloperDTO(1L, "Activision", games);
 		
 		MockHttpServletRequestBuilder mockRequest =
-				MockMvcRequestBuilders.request(HttpMethod.GET, "/game/read/"+testID)
+				MockMvcRequestBuilders.request(HttpMethod.GET, "/developer/read/"+testID)
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON);
 		
-		ResultMatcher matchContent = MockMvcResultMatchers.content().json(this.jsonifier.writeValueAsString(TEST_GAME));
+		ResultMatcher matchContent = MockMvcResultMatchers.content().json(this.jsonifier.writeValueAsString(TEST_DEV));
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isOk();
 		
 		this.mock.perform(mockRequest)
@@ -86,36 +84,44 @@ public class GameControllerIntegrationTest {
 	
 	@Test
 	public void readAll() throws Exception{
-		List<GameDTO> games = new ArrayList<>();
-		games.add(new GameDTO(1L, "Shooter", "PC", "CoD"));
-		games.add(new GameDTO(2L, "Puzzle", "Switch", "Swapper"));
-		
+		List<GameDTO> games1 =  new ArrayList<GameDTO>();
+		games1.add(new GameDTO(1L, "Shooter", "PC", "CoD"));
+		List<GameDTO> games2 =  new ArrayList<GameDTO>();
+		games2.add(new GameDTO(2L, "Puzzle", "Switch", "Swapper"));
+
+		List<DeveloperDTO> devs = new ArrayList<>();
+		DeveloperDTO dev1 = new DeveloperDTO(1L, "Activision", games1);
+		DeveloperDTO dev2 = new DeveloperDTO(2L, "Blizzard", games2);
+		devs.add(dev1);
+		devs.add(dev2);
 		
 		MockHttpServletRequestBuilder mockRequest =
-				MockMvcRequestBuilders.request(HttpMethod.GET, "/game/readAll/")
+				MockMvcRequestBuilders.request(HttpMethod.GET, "/developer/readAll/")
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON);
 		
-		ResultMatcher matchContent = MockMvcResultMatchers.content().json(this.jsonifier.writeValueAsString(games));
+		ResultMatcher matchContent = MockMvcResultMatchers.content().json(this.jsonifier.writeValueAsString(devs));
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isOk();
 		
 		this.mock.perform(mockRequest)
 		.andExpect(matchStatus)
 		.andExpect(matchContent);
 	}
-	// UPDATE
 	
 	@Test
 	public void update() throws Exception{
-		Game TEST_GAME = new Game(1L, new Developer(2L, "Valve", new ArrayList<Game>()), "Racing", "PS4", "Gran Turismo");
+		List<GameDTO> games =  new ArrayList<GameDTO>();
+		games.add(new GameDTO(1L, "Shooter", "PC", "CoD"));
+		
+		DeveloperDTO TEST_DEV = new DeveloperDTO(1L, "New Dev", games);
 		
 		MockHttpServletRequestBuilder mockRequest =
-				MockMvcRequestBuilders.request(HttpMethod.PUT, "/game/update/"+testID)
+				MockMvcRequestBuilders.request(HttpMethod.PUT, "/developer/update/"+testID)
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(this.jsonifier.writeValueAsString(TEST_GAME))
+				.content(this.jsonifier.writeValueAsString(TEST_DEV))
 				.accept(MediaType.APPLICATION_JSON);
 		
-		ResultMatcher matchContent = MockMvcResultMatchers.content().json(this.jsonifier.writeValueAsString(TEST_GAME));
+		ResultMatcher matchContent = MockMvcResultMatchers.content().json(this.jsonifier.writeValueAsString(TEST_DEV));
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isAccepted();
 		
 		this.mock.perform(mockRequest)
@@ -123,12 +129,10 @@ public class GameControllerIntegrationTest {
 		.andExpect(matchContent);
 	}
 	
-	// DELETE
 	@Test
-	public void delete() throws Exception{
-		
+	public void delete() throws Exception {
 		MockHttpServletRequestBuilder mockRequest =
-				MockMvcRequestBuilders.request(HttpMethod.DELETE, "/game/delete/"+testID);
+				MockMvcRequestBuilders.request(HttpMethod.DELETE, "/developer/delete/"+testID);
 
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isNoContent();
 		

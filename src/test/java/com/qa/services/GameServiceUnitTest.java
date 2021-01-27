@@ -115,7 +115,4 @@ public class GameServiceUnitTest {
 		Mockito.verify(this.repo, Mockito.times(1)).deleteById(1L);
 		Mockito.verify(this.repo, Mockito.times(1)).existsById(1L);
 	}
-	
-	
-
 }
