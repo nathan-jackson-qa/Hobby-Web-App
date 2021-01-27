@@ -13,6 +13,7 @@ import com.qa.persistence.domain.Game;
 import com.qa.persistence.dto.GameDTO;
 import com.qa.persistence.repos.GameRepo;
 
+
 @Service
 public class GameService {
 	
@@ -47,10 +48,9 @@ public class GameService {
 	public GameDTO updateGame(Long id, Game updatedGame) {
 		Optional<Game> existingOptional = this.repo.findById(id);
         Game game = existingOptional.get();
-        
 		game.setTitle(updatedGame.getTitle());
+		game.setDeveloper(updatedGame.getDeveloper());
 		game.setPlatform(updatedGame.getPlatform());
-		game.setDeveloperID(updatedGame.getDeveloperID());
 		game.setGenre(updatedGame.getGenre());
 		
 		return mapToDTO(repo.save(game));
