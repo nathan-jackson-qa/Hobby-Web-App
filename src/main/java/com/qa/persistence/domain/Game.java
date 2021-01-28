@@ -1,6 +1,5 @@
 package com.qa.persistence.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,12 +26,9 @@ public class Game {
 	@JsonBackReference
 	private Developer developer;
 
-	@Column(nullable = false)
 	private String genre;
 	
-	@Column(nullable = false)
 	private String platform;
 	
-	@Column(nullable = false)
 	private String title;
 }

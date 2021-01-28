@@ -17,19 +17,17 @@
         <div class="collapse navbar-collapse" id="collapseExample">
             <ul class="navbar-nav">
                 <li class="nav-item"><a href="index.html" class="nav-link">Create</a></li>
-                <li class="nav-item"><a href="update.html" class="nav-link">Update</a></li>
-
+                <li class="nav-item"><a href="developer.html" class="nav-link">Update</a></li>
             </ul>
         </div>
     </nav>
 <div class="container">
-    <!-- <fieldset> -->
+    <!--Game Creation-->
         <legend>Create Game</legend>
-        <!-- <form method="POST" action=""> -->
             <div class="row pb-3 mb-3">
                 <div class="col-md">
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="title" name="title" required
+                        <input type="text" class="form-control" id="title" name="title"
                             placeholder="Game Title" />
                         <label for="title">Enter the Game Title</label>
                     </div>
@@ -49,7 +47,7 @@
                 </div>
                 <div class="col-md">
                     <div class="form-floating">
-                        <input type="number" step="1" min="1" class="form-control" id="dev" name="dev" required
+                        <input type="number" step="1" min="1" class="form-control" id="dev" name="dev"
                             placeholder="Developer" />
                         <label for="dev">Enter the Developer ID</label>
                     </div>
@@ -67,18 +65,119 @@
                     </select>
                 </div>
             </div>
-            <div class="row" id = "feedback">
-
+            <div class="row" id = "createFeedback">
             </div> 
-            
-    <!-- </fieldset> -->
+            <div class="row border-bottom border-3 pb-3 mb-3">
+               <button type="button" id="create"> Create </button>
+            </div>
 
+    <!--Game Read-->
+    <legend>View Game</legend>
+    <div class="row pb-3 mb-3">
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="number" step="1" min="1" class="form-control" id="gameID" name="gameID" required
+                    placeholder="Game ID" />
+                <label for="gameID">Enter the Game ID you want to view</label>
+            </div>
+        </div>
+        <div class="col-md" id = "readDetails">
 
-    <!-- <input type="button" value="submit" /> -->
-    <button type="button" id="submit"s> OK </button>
-    <button type="reset">Reset</button>
-    <!-- <button type="button">Click me</button> -->
-    </form>
+        </div>
+    </div>
+    <div class="row pb-3 mb-3 border-bottom border-3">
+        <button type="button" id="readID"> Read </button>
+    </div>
+
+    <!--Game Read All-->
+    <legend>View All Games</legend>
+    <div class="row pb-3 mb-3 border-bottom border-3">
+        <div class="col-md">
+            <button type="button" id="readAll"> Read All</button>
+        </div>
+        <div class="col-md" id = "readAllDetails">
+
+        </div>
+    </div>
+
+    <!--Game Updating-->
+    <legend>Update Game</legend>
+    <div class="row pb-3 mb-3">
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="number" step="1" min="1" class="form-control" id="updateID" name="updateID" required
+                    placeholder="Update ID" />
+                <label for="updateID">Enter the Game ID you want to Update</label>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="updTitle" name="updTitle"
+                    placeholder="Game Title" />
+                <label for="updTitle">Enter the Updated Game Title</label>
+            </div>
+        </div>
+        <div class="col-md">
+            <label for="genre">Genre:</label>
+            <select class="form-select" id="updGenre" name="updGenre">
+                <option selected disabled=true>Genre:</option>
+                <option>First Person Shooter</option>
+                <option>Third Person Shooter</option>
+                <option>Puzzle</option>
+                <option>2D Platformer</option>
+                <option>3D Platformer</option>
+                <option>Racing</option>
+                <option>Real Time Strategy</option>
+            </select>
+        </div>
+    </div>
+    <div class="row pb-3 mb-3">
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="number" step="1" min="1" class="form-control" id="updDev" name="updDev"
+                    placeholder="Developer" />
+                <label for="updDev">Enter the Updated Developer ID</label>
+            </div>
+        </div>
+        <div class="col-md">
+            <label for="genre">Platform:</label>
+            <select class="form-select" id="updPlat" name="updPlat">
+                <option selected disabled=true>Platform:</option>
+                <option>PC</option>
+                <option>Nintendo Switch</option>
+                <option>Xbox Series X</option>
+                <option>PS5</option>
+            </select>
+        </div>
+    </div>
+    <div class="row pb-3 mb-3">
+        <div class="col-md">
+            <button type="button" id="update">Update</button>
+        </div>
+    </div>
+    <div class="row pb-3 mb-3 border-bottom border-3">
+        <div class="col-md" id = "updateFeedback">
+
+        </div>
+    </div>
+
+    <!--Game Deletion-->
+    <legend>Delete Game</legend>
+    <div class="row pb-3 mb-3">
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="number" step="1" min="1" class="form-control" id="deleteID" name="deleteID" required
+                    placeholder="Delete ID" />
+                <label for="deleteID">Enter the Game ID you want to delete</label>
+            </div>
+        </div>
+        <div class="row pb-3 mb-3 border-bottom border-3">
+            <button type="button" id="delete"> Delete </button>
+        </div>
+        <div class="col-md" id = "deleteFeedback">
+
+        </div>
+    </div>
 </div>
 
 <!-- JavaScript Link here -->
