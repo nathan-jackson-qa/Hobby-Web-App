@@ -3,6 +3,7 @@ package com.qa.selenium;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
@@ -59,5 +60,9 @@ public class SeleniumTests {
 		assertEquals("Item Deleted!", devPage.deleteFeedback.getText());
 	}
 	
+	@AfterAll
+	public static void cleanUp() {
+		driver.quit();
+	}
 	
 }
