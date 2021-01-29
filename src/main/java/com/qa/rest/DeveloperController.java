@@ -53,7 +53,7 @@ public class DeveloperController {
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<DeveloperDTO> deleteDev(@PathVariable("id") Long id) {
 		return service.removeDev(id) ?
-				new ResponseEntity<>(HttpStatus.NO_CONTENT) :
-					new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+				new ResponseEntity<DeveloperDTO>(HttpStatus.NO_CONTENT) :
+					new ResponseEntity<DeveloperDTO>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }

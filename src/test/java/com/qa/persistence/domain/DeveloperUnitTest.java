@@ -42,7 +42,7 @@ public class DeveloperUnitTest {
 	@Test
 	public void TestToString() {
 		Developer TEST_DEV = new Developer(1L, "Activision", new ArrayList<Game>());
-		String output = "Developer(id=1, name=Activision, games=[])";
+		String output = "Developer [id=1, name=Activision, games=[]]";
 		String result = TEST_DEV.toString();
 		
 		assertEquals(result, output);
