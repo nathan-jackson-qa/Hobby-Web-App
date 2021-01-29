@@ -27,18 +27,18 @@ const deleteID = document.querySelector('#deleteID')
 const deleteFeedback = document.querySelector('#deleteFeedback');
 
 const create = () => {
-    createFeedback.innerHTML="";
+    createFeedback.innerHTML = "";
     const title = titleValue.value;
     const genre = genreValue.value;
     const dev = devValue.value;
     const platform = platformValue.value;
     let feedback = "";
 
-    if(title != "" || genre != "Genre:" || dev > 0 || platform != "Platform:") {
-            fetch(`http://localhost:8080/game/create`, {
+    if (title != "" || genre != "Genre:" || dev > 0 || platform != "Platform:") {
+        fetch(`http://localhost:8080/game/create`, {
             method: 'POST',
             body: JSON.stringify({
-                "developer": {"id": dev},
+                "developer": { "id": dev },
                 "genre": genre,
                 "platform": platform,
                 "title": title
@@ -46,49 +46,49 @@ const create = () => {
             headers: {
                 'Content-Type': "application/json"
             }
-            }).then(response =>response.json())
+        }).then(response => response.json())
             .then(json => {
                 feedback += `Game ID: ${json.id}, Title: ${json.title}, Genre: ${json.genre}, Platform: ${json.platform}, `;
             }).then(get => {
                 fetch(`http://localhost:8080/developer/read/${dev}`)
-                .then(response => response.json())
-                .then(jsonDev => {
-                    feedback += `Developer: ${jsonDev.name}`;
-                    output(createFeedback, feedback);
-                }).catch(error => console.error("Error:", error))
+                    .then(response => response.json())
+                    .then(jsonDev => {
+                        feedback += `Developer: ${jsonDev.name}`;
+                        output(createFeedback, feedback);
+                    }).catch(error => console.error("Error:", error))
             }).catch(err => console.error("Game Could not be created: " + err))
-   }else {
+    } else {
         return "Game could not be created, please ensure all fields are entered";
     }
 }
 
 const read = () => {
-    readFeedback.innerHTML="";
+    readFeedback.innerHTML = "";
     const readIDValue = readID.value;
-    if(readIDValue > 0) {
+    if (readIDValue > 0) {
         fetch(`http://localhost:8080/game/read/${readIDValue}`)
-        .then(response => response.json())
-        .then(json => {
-            let readDetails = `Game ID: ${json.id}, Title: ${json.title}, Genre: ${json.genre}, Platform: ${json.platform}`;
-            output(readFeedback, readDetails);
-        }).catch(err => console.error("Something went wrong: " + err))
+            .then(response => response.json())
+            .then(json => {
+                let readDetails = `Game ID: ${json.id}, Title: ${json.title}, Genre: ${json.genre}, Platform: ${json.platform}`;
+                output(readFeedback, readDetails);
+            }).catch(err => console.error("Something went wrong: " + err))
     }
 }
 
 const readAll = () => {
-    readAllFeedback.innerHTML="";
+    readAllFeedback.innerHTML = "";
     fetch(`http://localhost:8080/game/readAll`)
-    .then(response => response.json())
-    .then(json => {
-        for(let i = 0; i < json.length; i++) {
-            let details = `Game ID: ${json[i].id}, Title: ${json[i].title}, Genre: ${json[i].genre}, Platform: ${json[i].platform}`;
-            output(readAllFeedback, details);
-        }
-    }).catch(err => console.error("Something went wrong: " + err))
+        .then(response => response.json())
+        .then(json => {
+            for (let i = 0; i < json.length; i++) {
+                let details = `Game ID: ${json[i].id}, Title: ${json[i].title}, Genre: ${json[i].genre}, Platform: ${json[i].platform}`;
+                output(readAllFeedback, details);
+            }
+        }).catch(err => console.error("Something went wrong: " + err))
 }
 
 const update = () => {
-    updateFeedback.innerHTML="";
+    updateFeedback.innerHTML = "";
     const id = updID.value;
     const title = updTitle.value;
     const genre = updGenre.value;
@@ -98,7 +98,7 @@ const update = () => {
     fetch(`http://localhost:8080/game/update/${id}`, {
         method: "PUT",
         body: JSON.stringify({
-            "developer": {"id":dev},
+            "developer": { "id": dev },
             "title": title,
             "genre": genre,
             "platform": platform
@@ -107,13 +107,13 @@ const update = () => {
             "Content-type": "application/json; charset=UTF-8",
         }
     }).then(response => {
-        if(response.status === 202) {
+        if (response.status === 202) {
             check = true;
             response.json();
         }
     }).then(json => {
         let details = null;
-        if(check == true) {
+        if (check == true) {
             details = `Update Successful`;
         }
         else {
@@ -125,20 +125,20 @@ const update = () => {
 
 
 const deleteGame = () => {
-    deleteFeedback.innerHTML="";
+    deleteFeedback.innerHTML = "";
     const deleteValue = deleteID.value;
     let p = document.createElement("p");
     let feedback = undefined;
-    fetch(`http://localhost:8080/game/delete/${deleteValue}`, { method:"DELETE"})
-    .then(response => {
-        if(response.status != 204) {
-            feedback = "Item could not be deleted";
-        }
-        else {
-            feedback = "Item Deleted!";
-        }
-        output(deleteFeedback, feedback);
-    }).catch(err => console.error("Something went wrong: " + err))
+    fetch(`http://localhost:8080/game/delete/${deleteValue}`, { method: "DELETE" })
+        .then(response => {
+            if (response.status != 204) {
+                feedback = "Item could not be deleted";
+            }
+            else {
+                feedback = "Item Deleted!";
+            }
+            output(deleteFeedback, feedback);
+        }).catch(err => console.error("Something went wrong: " + err))
 }
 
 const output = (element, text) => {

@@ -45,7 +45,7 @@ public class GameUnitTest {
 	@Test
 	public void testToString() {
 		Game TEST_GAME = new Game(1L, new Developer (1L, "Activision", new ArrayList<Game>()), "Shooter", "PC", "CoD");
-		String output = "Game(id=1, developer=Developer(id=1, name=Activision, games=[]), genre=Shooter, platform=PC, title=CoD)";
+		String output = "Game [id=1, developer=Developer [id=1, name=Activision, games=[]], genre=Shooter, platform=PC, title=CoD]";
 		
 		String result = TEST_GAME.toString();
 		assertEquals(result, output);

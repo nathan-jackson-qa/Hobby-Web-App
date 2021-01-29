@@ -42,7 +42,7 @@ public class GameDTOUnitTest {
 	@Test
 	public void testToString() {
 		GameDTO TEST_GAME = new GameDTO(1L, "Shooter", "PC", "CoD");
-		String output = "GameDTO(id=1, genre=Shooter, platform=PC, title=CoD)";
+		String output = "GameDTO [id=1, genre=Shooter, platform=PC, title=CoD]";
 		
 		String result = TEST_GAME.toString();
 		

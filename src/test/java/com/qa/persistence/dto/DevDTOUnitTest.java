@@ -43,9 +43,9 @@ public class DevDTOUnitTest {
 	@Test
 	public void TestToString() {
 		DeveloperDTO TEST_DEV = new DeveloperDTO(1L, "Activision", new ArrayList<GameDTO>());
-		String output = "DeveloperDTO(id=1, name=Activision, games=[])";
+		String output = "DeveloperDTO [id=1, name=Activision, games=[]]";
 		String result = TEST_DEV.toString();
-		
+
 		assertEquals(result, output);
 	}
 	
