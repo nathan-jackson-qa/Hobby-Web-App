@@ -4,22 +4,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class TestGamePage {
+public class TestDevPage {
 
 	private WebDriver driver;
 	
-	@FindBy(id="title")
-	private WebElement createTitle;	
-	@FindBy(name="dev")
-	private WebElement createDev;
+	@FindBy(id="name")
+	private WebElement createName;	
 	@FindBy(id="create")
 	private WebElement createButton;
 	
-	@FindBy(id="gameID")
+	@FindBy(id="devID")
 	private WebElement readValue;
 	@FindBy(id="readID")
 	private WebElement readButton;
@@ -29,11 +24,9 @@ public class TestGamePage {
 	
 	@FindBy(id="updateID")
 	private WebElement updateId;
-	@FindBy(id="updTitle")
-	private WebElement updTitle;	
-	@FindBy(id="updDev")
-	private WebElement updDev;
-	@FindBy(id="update")
+	@FindBy(id="updName")
+	private WebElement updName;	
+	@FindBy(xpath="/html/body/div/div[5]/div[3]/div/button")
 	private WebElement updateButton;
 	
 	@FindBy(id="deleteID")
@@ -47,19 +40,13 @@ public class TestGamePage {
 	public WebElement updateFeedback;
 	public WebElement deleteFeedback;
 	
-	
-	public TestGamePage(WebDriver driver) {
+	public TestDevPage(WebDriver driver) {
 		this.driver = driver;
-		this.driver.get("http://localhost:8080/");
+		this.driver.get("http://localhost:8080/developer.html");
 	}
 	
 	public void testCreate() throws InterruptedException {
-		Select createGenre = new Select(driver.findElement(By.id("genre")));	
-		Select createPlatform = new Select(driver.findElement(By.id("platform")));	
-		createTitle.sendKeys("Sudoku");
-		createGenre.selectByVisibleText("Puzzle");
-		createDev.sendKeys("1");
-		createPlatform.selectByVisibleText("PC");
+		createName.sendKeys("Best developer");
 		createButton.click();
 		Thread.sleep(500);
 		createFeedback = driver.findElement(By.id("createFeedback"));
@@ -67,7 +54,7 @@ public class TestGamePage {
 	
 	public void testReadID() throws InterruptedException {
 		readValue.sendKeys("1");
-		readButton.click();		
+		readButton.click();
 		Thread.sleep(500);
 		readFeedback = driver.findElement(By.id("readDetails"));
 	}
@@ -80,13 +67,9 @@ public class TestGamePage {
 	
 	
 	public void testUpdate() throws InterruptedException {
-		Select updGenre = new Select(driver.findElement(By.id("updGenre")));	
-		Select updPlat = new Select(driver.findElement(By.id("updPlat")));
-		updGenre.selectByVisibleText("Racing");
-		updPlat.selectByVisibleText("PS5");
 		updateId.sendKeys("3");
-		updTitle.sendKeys("Forza");
-		updDev.sendKeys("2");
+		updName.sendKeys("Changed Dev");
+		Thread.sleep(500);
 		updateButton.click();
 		
 		Thread.sleep(500);
@@ -99,6 +82,4 @@ public class TestGamePage {
 		Thread.sleep(500);
 		readAllFeedback = driver.findElement(By.id("deleteFeedback"));
 	}
-	
-	
 }

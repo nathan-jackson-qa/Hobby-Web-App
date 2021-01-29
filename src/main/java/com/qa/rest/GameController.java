@@ -52,7 +52,7 @@ public class GameController {
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<GameDTO> deleteGame(@PathVariable("id") Long id) {
 		return service.deleteGame(id) ?
-				new ResponseEntity<>(HttpStatus.NO_CONTENT) :
-					new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+				new ResponseEntity<GameDTO>(HttpStatus.NO_CONTENT) :
+					new ResponseEntity<GameDTO>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }
