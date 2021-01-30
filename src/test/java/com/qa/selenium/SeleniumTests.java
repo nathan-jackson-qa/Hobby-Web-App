@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,6 +23,7 @@ public class SeleniumTests {
 	}
 	
 	@Test
+	@Disabled
 	public void gamePage() throws InterruptedException {
 		TestGamePage gamePage = PageFactory.initElements(driver, TestGamePage.class);
 		gamePage.testCreate();
@@ -41,6 +43,7 @@ public class SeleniumTests {
 	}
 	
 	@Test
+	@Disabled
 	public void devPage() throws InterruptedException {
 		TestDevPage devPage = PageFactory.initElements(driver,TestDevPage.class);
 		
