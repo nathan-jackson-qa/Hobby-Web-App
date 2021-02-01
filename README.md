@@ -3,7 +3,7 @@ Jira Kanban Board: <https://20novsoftware2-nathan-jackson.atlassian.net/secure/R
 
 # Hobby Web Application
 
-This application is used to 
+This application is used to create and host a local database bases aroung games and developers, this uses a front end website to take in user input to perform full CRUD functionality with the created database.
 
 ## Getting Started
 
@@ -20,7 +20,7 @@ Maven installion instructions can be found here: <https://maven.apache.org/insta
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+A step by step series of examples that tell you how to get an instance running
 
 #### Running .jar
 
