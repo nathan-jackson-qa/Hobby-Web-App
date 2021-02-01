@@ -23,7 +23,7 @@ public class SeleniumTests {
 	}
 	
 	@Test
-	@Disabled
+//	@Disabled
 	public void gamePage() throws InterruptedException {
 		TestGamePage gamePage = PageFactory.initElements(driver, TestGamePage.class);
 		gamePage.testCreate();
@@ -43,7 +43,7 @@ public class SeleniumTests {
 	}
 	
 	@Test
-	@Disabled
+//	@Disabled
 	public void devPage() throws InterruptedException {
 		TestDevPage devPage = PageFactory.initElements(driver,TestDevPage.class);
 		
