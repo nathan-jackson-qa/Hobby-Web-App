@@ -73,9 +73,5 @@ Add additional notes about how to deploy this on a live system
 * [SpringBoot](https://spring.io/projects/spring-boot) - IDE
 * [Bootstrap](https://getbootstrap.com/) - Web site styling
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning.
-
 ## Authors
 Nathan Jackson - Primary Developer
